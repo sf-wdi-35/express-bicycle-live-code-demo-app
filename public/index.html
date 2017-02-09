@@ -17,11 +17,10 @@ crossorigin="anonymous"></script>
       success: function (response){
         var bikes = response.data;
         bikes.forEach(function(bike){
-          $("body").append(`<p>${bike.make} ${bike.model} ${bike.year}</p>`)
-      })
-
+          $("body").append(`<p>${bike.make} ${bike.model} ${bike.year}</p>`);
+        });
       }
-    })
+    });
   </script>
 </body>
 </html>
