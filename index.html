@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script
+src="http://code.jquery.com/jquery-3.1.1.min.js"
+integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+crossorigin="anonymous"></script>
+  <title>Hello</title>
+</head>
+<body>
+  <h1>You are Home</h1>
+  <script>
+    // TODO: move to public/scripts/app.js
+    $.ajax({
+      url: "/api/bicycles",
+      method: "get",
+      success: function (response){
+        var bikes = response.data;
+        bikes.forEach(function(bike){
+          $("body").append(`<p>${bike.make} ${bike.model} ${bike.year}</p>`)
+      })
+
+      }
+    })
+  </script>
+</body>
+</html>
