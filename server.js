@@ -23,6 +23,7 @@ app.get("/", function(req, res){
 // route = METHOD + PATH      callback = "controller action"
 app.get("/api/bicycles", function bicycleIndex(req, res){
   db.Bicycle.find({}, function(err, allTheBikes){
+    //TODO: error handling
     res.send({
       data: allTheBikes // all my bicycles
     });
@@ -32,6 +33,7 @@ app.get("/api/bicycles", function bicycleIndex(req, res){
 app.get("/api/bicycles/:_id", function bicycleShow(req, res){
   var _id = req.params._id;
   db.Bicycle.findOne({_id: _id}, function(err, theBike){
+    //TODO: error handling
     res.send( theBike );
   });
 });
@@ -39,6 +41,7 @@ app.get("/api/bicycles/:_id", function bicycleShow(req, res){
 app.delete("/api/bicycles/:_id", function bicycleDestroy(req, res){
   var _id = req.params._id;
   db.Bicycle.findOneAndRemove({_id: _id}, function(err){
+    //TODO: error handling
     res.sendStatus(204);
   });
 });
@@ -48,17 +51,19 @@ app.post("/api/bicycles", function bicycleCreate(req, res){
 
   db.Bicycle.create(bike, function(err, newBike){
     if(err){ console.log(err); }
+    //TODO: error handling
     res.send(newBike);
   });
 });
 
 app.put("/api/bicycles/:_id", function bicycleUpdate(req, res){
   var _id = req.params._id;
-  var bikeData = req.body;
+  var bikeData = req.body; // security concern to handoff without checking what it is
 
   // http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate
   db.Bicycle.findOneAndUpdate(
     {_id: _id}, bikeData, {new: true}, function(err, updatedBike){
+      //TODO: error handling
       res.send(updatedBike);
     }
   );
